@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectoMEPyDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Compañia">
+          <Key>
+            <PropertyRef Name="IdCompañia" />
+          </Key>
+          <Property Name="IdCompañia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompañia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Web" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="25" />
+          <Property Name="Direcion" Type="varchar" MaxLength="100" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" />
+          <Property Name="Pais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleados" />
+          </Key>
+          <Property Name="IdEmpleados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apellidos" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="varchar" MaxLength="15" />
+          <Property Name="CorreoEmpleados" Type="varchar" MaxLength="50" />
+          <Property Name="TelefonoOficina" Type="varchar" MaxLength="15" />
+          <Property Name="Celular" Type="varchar" MaxLength="15" />
+          <Property Name="Cargo" Type="varchar" MaxLength="25" />
+          <Property Name="Departamento" Type="varchar" MaxLength="25" />
+          <Property Name="IdCompañia" Type="int" />
+        </EntityType>
+        <Association Name="FK_Empleados">
+          <End Role="Compañia" Type="Self.Compañia" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compañia">
+              <PropertyRef Name="IdCompañia" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdCompañia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BuscarCompañia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EliminarCompañiaRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EliminarEmpleadoRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoEmpleado" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoEmpleados" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoOficina" Type="varchar" Mode="In" />
+          <Parameter Name="Celular" Type="varchar" Mode="In" />
+          <Parameter Name="Cargo" Type="varchar" Mode="In" />
+          <Parameter Name="Departamento" Type="varchar" Mode="In" />
+          <Parameter Name="IdCompañia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertarEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreCompañia" Type="varchar" Mode="In" />
+          <Parameter Name="Web" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Direcion" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Pais" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateCompañiaRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="NombreCompañia" Type="varchar" Mode="In" />
+          <Parameter Name="Web" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Direcion" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Pais" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmpleadoRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoEmpleado" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoEmpleados" Type="varchar" Mode="In" />
+          <Parameter Name="TelefonoOficina" Type="varchar" Mode="In" />
+          <Parameter Name="Celular" Type="varchar" Mode="In" />
+          <Parameter Name="Cargo" Type="varchar" Mode="In" />
+          <Parameter Name="Departamento" Type="varchar" Mode="In" />
+          <Parameter Name="idCompañia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="verCompañiaRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="verEmpledoCompañiaRegistro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ProyectoMEPyDModelStoreContainer">
+          <EntitySet Name="Compañia" EntityType="Self.Compañia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Empleados" Association="Self.FK_Empleados">
+            <End Role="Compañia" EntitySet="Compañia" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoMEPyDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Compañia">
+          <Key>
+            <PropertyRef Name="IdCompañia" />
+          </Key>
+          <Property Name="IdCompañia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Web" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Direcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleados" FromRole="Compañia" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleados" />
+          </Key>
+          <Property Name="IdEmpleados" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoEmpleado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoEmpleados" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoOficina" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Departamento" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="IdCompañia" Type="Int32" />
+          <NavigationProperty Name="Compañia" Relationship="Self.FK_Empleados" FromRole="Empleado" ToRole="Compañia" />
+        </EntityType>
+        <Association Name="FK_Empleados">
+          <End Role="Compañia" Type="Self.Compañia" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compañia">
+              <PropertyRef Name="IdCompañia" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdCompañia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoMEPyDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Compañia" EntityType="Self.Compañia" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <AssociationSet Name="FK_Empleados" Association="Self.FK_Empleados">
+            <End Role="Compañia" EntitySet="Compañia" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <FunctionImport Name="EliminarCompañiaRegistro">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarEmpleadoRegistro">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarEmpleado">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="CodigoEmpleado" Mode="In" Type="String" />
+            <Parameter Name="CorreoEmpleados" Mode="In" Type="String" />
+            <Parameter Name="TelefonoOficina" Mode="In" Type="String" />
+            <Parameter Name="Celular" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="Departamento" Mode="In" Type="String" />
+            <Parameter Name="IdCompañia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarEmpresa">
+            <Parameter Name="NombreCompañia" Mode="In" Type="String" />
+            <Parameter Name="Web" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Direcion" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Pais" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCompañiaRegistro">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="NombreCompañia" Mode="In" Type="String" />
+            <Parameter Name="Web" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Direcion" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Pais" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEmpleadoRegistro">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="CodigoEmpleado" Mode="In" Type="String" />
+            <Parameter Name="CorreoEmpleados" Mode="In" Type="String" />
+            <Parameter Name="TelefonoOficina" Mode="In" Type="String" />
+            <Parameter Name="Celular" Mode="In" Type="String" />
+            <Parameter Name="Cargo" Mode="In" Type="String" />
+            <Parameter Name="Departamento" Mode="In" Type="String" />
+            <Parameter Name="idCompañia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="verCompañiaRegistro" ReturnType="Collection(String)" />
+          <FunctionImport Name="verEmpledoCompañiaRegistro" ReturnType="Collection(ProyectoMEPyDModel.verEmpledoCompañiaRegistro_Result)" />
+          <FunctionImport Name="BuscarCompañia" ReturnType="Collection(ProyectoMEPyDModel.BuscarCompañia_Result)" />
+        </EntityContainer>
+        <ComplexType Name="verEmpledoCompañiaRegistro_Result">
+          <Property Type="Int32" Name="IdEmpleados" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="CodigoEmpleado" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="CorreoEmpleados" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelefonoOficina" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Celular" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Departamento" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="NombreCompañia" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="BuscarCompañia_Result">
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoMEPyDModelStoreContainer" CdmEntityContainer="ProyectoMEPyDEntities">
+          <EntitySetMapping Name="Compañia">
+            <EntityTypeMapping TypeName="ProyectoMEPyDModel.Compañia">
+              <MappingFragment StoreEntitySet="Compañia">
+                <ScalarProperty Name="IdCompañia" ColumnName="IdCompañia" />
+                <ScalarProperty Name="NombreCompañia" ColumnName="NombreCompañia" />
+                <ScalarProperty Name="Web" ColumnName="Web" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Direcion" ColumnName="Direcion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="ProyectoMEPyDModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="IdEmpleados" ColumnName="IdEmpleados" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+                <ScalarProperty Name="CorreoEmpleados" ColumnName="CorreoEmpleados" />
+                <ScalarProperty Name="TelefonoOficina" ColumnName="TelefonoOficina" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="IdCompañia" ColumnName="IdCompañia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EliminarCompañiaRegistro" FunctionName="ProyectoMEPyDModel.Store.EliminarCompañiaRegistro" />
+          <FunctionImportMapping FunctionImportName="EliminarEmpleadoRegistro" FunctionName="ProyectoMEPyDModel.Store.EliminarEmpleadoRegistro" />
+          <FunctionImportMapping FunctionImportName="InsertarEmpleado" FunctionName="ProyectoMEPyDModel.Store.InsertarEmpleado" />
+          <FunctionImportMapping FunctionImportName="InsertarEmpresa" FunctionName="ProyectoMEPyDModel.Store.InsertarEmpresa" />
+          <FunctionImportMapping FunctionImportName="UpdateCompañiaRegistro" FunctionName="ProyectoMEPyDModel.Store.UpdateCompañiaRegistro" />
+          <FunctionImportMapping FunctionImportName="UpdateEmpleadoRegistro" FunctionName="ProyectoMEPyDModel.Store.UpdateEmpleadoRegistro" />
+          <FunctionImportMapping FunctionImportName="verCompañiaRegistro" FunctionName="ProyectoMEPyDModel.Store.verCompañiaRegistro" />
+          <FunctionImportMapping FunctionImportName="verEmpledoCompañiaRegistro" FunctionName="ProyectoMEPyDModel.Store.verEmpledoCompañiaRegistro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoMEPyDModel.verEmpledoCompañiaRegistro_Result">
+                <ScalarProperty Name="IdEmpleados" ColumnName="IdEmpleados" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="CodigoEmpleado" ColumnName="CodigoEmpleado" />
+                <ScalarProperty Name="CorreoEmpleados" ColumnName="CorreoEmpleados" />
+                <ScalarProperty Name="TelefonoOficina" ColumnName="TelefonoOficina" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+                <ScalarProperty Name="NombreCompañia" ColumnName="NombreCompañia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BuscarCompañia" FunctionName="ProyectoMEPyDModel.Store.BuscarCompañia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProyectoMEPyDModel.BuscarCompañia_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
